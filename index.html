@@ -122,17 +122,15 @@
   <button class="text-gray-500 hover:text-gray-800">
     <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
   </button>
-  <div class="flex items-center gap-3">
+  <div class="flex items-center gap-8">
     <span class="step-done flex items-center gap-1.5">
       <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"/></svg>
       내용 입력
     </span>
-    <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
     <span class="step-active flex items-center gap-1.5" style="color:#935CD6">
       <span class="w-5 h-5 rounded-full text-white text-xs flex items-center justify-center font-bold" style="background:#935CD6">2</span>
       기획·구성 확인
     </span>
-    <svg class="w-3 h-3 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
     <span class="text-gray-400 flex items-center gap-1.5">
       <span class="w-5 h-5 rounded-full border border-gray-300 text-xs text-gray-400 flex items-center justify-center">3</span>
       세부 내용 확인
@@ -208,7 +206,7 @@
             <div class="space-y-[17px] flex-1">
               <div class="flex items-baseline gap-4">
                 <span class="text-xs text-gray-400 w-12 shrink-0">테마</span>
-                <span class="text-sm font-semibold text-gray-800">AI 프레젠테이션의 미래</span>
+                <span class="text-sm text-gray-600">AI 프레젠테이션의 미래</span>
               </div>
               <div class="flex items-baseline gap-4">
                 <span class="text-xs text-gray-400 w-12 shrink-0">목적</span>
@@ -221,7 +219,7 @@
             </div>
             <div class="ml-5 relative shrink-0 rounded-xl overflow-hidden" style="height:102px;">
               <img src="thumbnail.png" alt="테마" style="height:102px; width:auto; display:block;" />
-              <button class="absolute top-1.5 right-1.5 z-10 text-gray-600 bg-white/90 rounded px-1.5 py-0.5 font-medium" style="font-size:9px">변경</button>
+              <button class="absolute top-1.5 right-1.5 z-10 text-white bg-[#73788C] rounded px-1.5 py-0.5 font-medium" style="font-size:9px">변경</button>
             </div>
           </div>
         </div>
@@ -428,25 +426,34 @@ function renderSpotlight() {
   hole.style.cssText = `left:${hLeft}px;top:${hTop}px;width:${hWidth}px;height:${hHeight}px`;
   const hRight = hLeft + hWidth;
   const hBottom = hTop + hHeight;
-  const TW = 327, TH = 175;
-  let l, t;
-  if (step.position === 'bottom') { l = hLeft; t = hBottom + 16; }
-  else if (step.position === 'bottom-right') { l = hRight + 16; t = hTop + (hHeight - TH) / 2; }
-  else if (step.position === 'left') { l = hLeft - TW - 16; t = rect.top + (rect.height - TH) / 2; }
-  else { l = rect.right - TW; t = hTop - TH - 32; }
-  l = Math.max(12, Math.min(l, window.innerWidth - TW - 12));
-  t = Math.max(12, Math.min(t, window.innerHeight - TH - 12));
+
   const tip = document.getElementById('tooltipBox');
-  tip.style.left = l + 'px'; tip.style.top = t + 'px';
+  const btn = document.getElementById('tooltipNext');
+  const prevBtn = document.getElementById('tooltipPrev');
+
   document.getElementById('tooltipStep').textContent = step.label;
   document.getElementById('tooltipTitle').textContent = step.title;
   document.getElementById('tooltipBody').textContent = step.body;
-  const btn = document.getElementById('tooltipNext');
-  const prevBtn = document.getElementById('tooltipPrev');
+  
   if (step.isLast) { btn.textContent = '시작하기'; btn.onclick = finishSpotlight; }
   else             { btn.textContent = '다음';     btn.onclick = nextSpotlight; }
   if (spotlightStep === 0) prevBtn.style.opacity = '0.5'; else prevBtn.style.opacity = '1';
   prevBtn.disabled = (spotlightStep === 0);
+
+  const TW = tip.offsetWidth || 327;
+  const TH = tip.offsetHeight;
+
+  let l, t;
+  if (step.position === 'bottom') { l = hLeft; t = hBottom + 16; }
+  else if (step.position === 'bottom-right') { l = hRight + 16; t = hTop + (hHeight - TH) / 2; }
+  else if (step.position === 'left') { l = hLeft - TW - 16; t = rect.top + (rect.height - TH) / 2; }
+  else { l = rect.right - TW; t = hTop - TH - 16; }
+
+  l = Math.max(12, Math.min(l, window.innerWidth - TW - 12));
+  t = Math.max(12, Math.min(t, window.innerHeight - TH - 12));
+  
+  tip.style.left = l + 'px'; 
+  tip.style.top = t + 'px';
 }
 
 function nextSpotlight() { if (spotlightStep < steps.length - 1) { spotlightStep++; renderSpotlight(); } }
