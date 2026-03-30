@@ -146,7 +146,7 @@
 <div class="flex h-[calc(100vh-45px)] gap-[60px]">
 
   <!-- LEFT: CHAT -->
-  <div id="chatPanel" class="w-[45%] flex flex-col pl-[80px] py-3 gap-3 overflow-y-auto">
+  <div id="chatPanel" class="w-[45%] flex flex-col pl-[80px] pt-3 gap-3 overflow-y-auto">
 
     <!-- User input card -->
     <div class="card-user max-w-[520px] ml-auto" style="background:#EFDFFF; border-radius:16px 4px 16px 16px; box-shadow: 0 2px 4px rgba(0,0,0,0.08);">
@@ -187,10 +187,10 @@
   </div>
 
   <!-- RIGHT: 기획·구성 PANEL -->
-  <div class="w-[55%] flex flex-col pl-3 pr-[80px] py-3 gap-3">
+  <div class="w-[55%] flex flex-col pl-3 pr-[80px] pt-3 pb-[40px] gap-3 min-h-0">
 
     <!-- Outer panel: bg-white/30, bottom margin 40px -->
-    <div class="flex-1 bg-white/30 rounded-2xl flex flex-col gap-3 p-5 mb-[40px]" style="box-shadow: 0 20px 40px rgba(47,57,58,0.08);">
+    <div class="flex-1 min-h-0 bg-white/30 rounded-2xl flex flex-col gap-3 p-5" style="box-shadow: 0 20px 40px rgba(47,57,58,0.08);">
 
       <!-- Title row -->
       <div class="flex items-center justify-between shrink-0">
@@ -198,7 +198,7 @@
       </div>
 
       <!-- Scrollable: L1 card + L2+TOC card -->
-      <div class="flex-1 overflow-y-auto no-scrollbar flex flex-col gap-3">
+      <div class="flex-1 min-h-0 overflow-y-auto no-scrollbar flex flex-col gap-3">
 
         <!-- L1 card: bg-white/70 -->
         <div id="panelL1" class="bg-white/70 rounded-xl p-4 shrink-0" style="box-shadow: 0 2px 8px rgba(0,0,0,0.10);">
@@ -217,7 +217,7 @@
                 <span class="text-sm text-gray-600">프레젠테이션 기획자, 기업 커뮤니케이션 담당자, 교육자</span>
               </div>
             </div>
-            <div class="ml-5 relative shrink-0 rounded-xl overflow-hidden" style="height:102px;">
+            <div class="ml-5 relative shrink-0 rounded-xl overflow-hidden hidden min-[1700px]:block" style="height:102px;">
               <img src="thumbnail.png" alt="테마" style="height:102px; width:auto; display:block;" />
               <button class="absolute top-1.5 right-1.5 z-10 text-white bg-[#73788C] rounded px-1.5 py-0.5 font-medium" style="font-size:9px">변경</button>
             </div>
@@ -517,6 +517,15 @@ document.addEventListener('click', e => {
 });
 function showFaqModal()  { document.getElementById('faqModal').style.display = 'flex'; }
 function closeFaqModal() { document.getElementById('faqModal').style.display = 'none'; }
+
+// 브라우저 창 크기가 조절될 때마다 위치를 다시 계산하는 이벤트 추가
+window.addEventListener('resize', () => {
+  const overlay = document.getElementById('spotlightOverlay');
+  // 튜토리얼이 켜져 있을 때만 위치를 다시 잡도록 설정
+  if (!overlay.classList.contains('hidden')) {
+    renderSpotlight();
+  }
+});
 
 setTimeout(() => startSpotlight(0), 800);
 </script>
