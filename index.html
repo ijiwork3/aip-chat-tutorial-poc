@@ -180,7 +180,9 @@
         <input id="chatInput" type="text" placeholder="더 완벽한 기획·구성을 위해 채팅으로 수정을 요청해 보세요."
           class="flex-1 text-sm outline-none text-gray-700 placeholder-gray-400 bg-transparent" />
         <button class="w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0" style="background:#1a1729">
-          <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M9 5l7 7-7 7"/></svg>
+          <svg class="w-5 h-5 text-white" fill="currentColor" viewBox="0 0 16 16">
+            <path d="m2.7 8.606-1.245 3.111c-.558 1.395.905 2.745 2.31 2.13l9.887-4.322a1.653 1.653 0 0 0 0-3.05L3.765 2.152c-1.405-.614-2.868.736-2.31 2.131L2.7 7.394c.014.035.027.07.038.106H8a.5.5 0 1 1 0 1H2.738a1.639 1.639 0 0 1-1.038.106Z"/>
+          </svg>
         </button>
       </div>
     </div>
@@ -205,7 +207,7 @@
           <div class="flex justify-between items-start">
             <div class="space-y-[17px] flex-1">
               <div class="flex items-baseline gap-4">
-                <span class="text-xs text-gray-400 w-12 shrink-0">테마</span>
+                <span class="text-xs text-gray-400 w-12 shrink-0">주제</span>
                 <span class="text-sm text-gray-600">AI 프레젠테이션의 미래</span>
               </div>
               <div class="flex items-baseline gap-4">
@@ -297,11 +299,11 @@
       <!-- CTA -->
       <div class="flex justify-end shrink-0">
         <button id="ctaBtn"
-          class="px-5 py-2.5 text-white text-sm font-semibold rounded-xl transition-colors"
-          style="background:#1a1729"
-          onmouseover="this.style.background='#2d2449'" onmouseout="this.style.background='#1a1729'">
-          세부 내용 만들기 →
-        </button>
+        class="flex items-center justify-center text-white text-sm font-semibold rounded-full transition-colors"
+        style="background:#1a1729; width: 200px; height: 40px;"
+        onmouseover="this.style.background='#2d2449'" onmouseout="this.style.background='#1a1729'">
+        세부 내용 만들기
+      </button>
       </div>
 
     </div><!-- /outer panel -->
@@ -374,33 +376,33 @@ let spotlightStep = 0;
 const steps = [
   {
     targetId: 'panelL1',
-    title: '발표의 기본 방향',
-    body: 'AI가 입력 내용 기반으로 테마·목적·대상을 잡았어요.\n달라야 한다면 왼쪽 채팅에서 알려주세요.',
+    title: '전체적인 기획 확인',
+    body: '입력 내용을 기반으로 AI가 주제·목적·대상을 설정했어요.\n프레젠테이션의 단어 선택나 말투 등에 영향을 줘요.',
     position: 'bottom', label: '1 / 5'
   },
   {
     targetId: 'panelL2',
-    title: '슬라이드 구성',
-    body: '각 섹션과 슬라이드 구성이에요.\n채팅으로 페이지를 추가·삭제하거나 내용을 바꿀 수 있어요.',
+    title: '이야기 흐름 구성',
+    body: '프레젠테이션의 전반적인 흐름을 확인할 수 있어요.\n각 페이지에 어떤 내용이 작성될지 확인해 보세요.',
     position: 'left', label: '2 / 5'
   },
   {
     targetId: 'chatPanel',
-    title: '채팅으로 쉽게 전체를 바꿔보세요',
-    body: '왼쪽 채팅에서 "~해줘"라고 입력하면\nL1, L2가 함께 업데이트돼요.\n대상, 페이지 수, 전체 흐름 등 원하는대로 수정할 수 있어요.',
+    title: '채팅으로 손쉽게 다듬어보세요',
+    body: '전체 흐름부터 페이지 수, 단어 선택까지 쉽게 수정해 보세요.\n"~해줘"라고 입력하면 AI가 내용을 업데이트해요.',
     position: 'bottom-right', label: '3 / 5',
     holeOffset: { left: 64, bottom: 40, rightExpand: 16 }
   },
   {
     targetId: 'ctaBtn',
     title: '세부 내용 만들기',
-    body: '흐름이 마음에 들면 여기서 슬라이드 세부 내용을 만들어요.\n지금 완벽하지 않아도 괜찮아요.',
+    body: '흐름이 마음에 들면 이 버튼을 눌러 확정해 주세요.\n다음 화면에서 더 세부적인 내용을 확인할 수 있어요.',
     position: 'top', label: '4 / 5'
   },
   {
     targetId: 'help-btn',
     title: '언제든 다시 볼 수 있어요',
-    body: '우하단 ?버튼을 누르면 이 튜토리얼과 도움말을 다시 볼 수 있어요.',
+    body: '?버튼을 누르면 이 도움말을 언제든 다시 볼 수 있어요.',
     position: 'top', label: '5 / 5', isLast: true
   }
 ];
