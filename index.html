@@ -458,7 +458,8 @@ function renderSpotlight() {
 
 function nextSpotlight() { if (spotlightStep < steps.length - 1) { spotlightStep++; renderSpotlight(); } }
 function prevSpotlight() { if (spotlightStep > 0) { spotlightStep--; renderSpotlight(); } }
-function handleOverlayClick(e) { if (e.target === document.getElementById('spotlightOverlay')) finishSpotlight(); }
+function handleOverlayClick(e) { 
+}
 function finishSpotlight() {
   document.getElementById('spotlightOverlay').classList.add('hidden');
   document.getElementById('tooltipBox').classList.add('hidden');
